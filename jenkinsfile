@@ -1,7 +1,16 @@
 @Library('SonarQube') _
+@Library('Hello') _
 
 pipeline {
     agent any
+    stages {
+        stage('Hello') {
+            steps {
+                script {
+                    hello.hello(msn: "Lauris la lindis preciosis")
+                }
+            }
+        }
     stages {
         stage('Checkout') {
             steps {
