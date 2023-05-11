@@ -11,8 +11,8 @@ def scan(Map params){
 def sonarqubescan(Map params) {
     withSonarQubeEnv("${params.scannertool}") {
         sh "${scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=reto1 \
-            -Dsonar.projectName=reto1 \
+            -Dsonar.projectKey=labreto1 \
+            -Dsonar.projectName=labreto1 \
             -Dsonar.projectVersion=1.0 \
             -Dsonar.sources=/var/jenkins_home/workspace/estasies \
             -Dsonar.host.url=http://sonarqube:9000 \
