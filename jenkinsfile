@@ -22,7 +22,6 @@ pipeline {
                         sonarHostUrl: "http://sonarqube:9000 " ,
                         sonarLogin: "admin" ,
                         sonarPassword: "1234" )
-                    )
                 }  
             }        
         }        
