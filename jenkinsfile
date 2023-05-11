@@ -15,8 +15,8 @@ pipeline {
             steps {
                 script {
                     sonarqube.scan(scannerHome: "sonarqube" , 
-                        projectKey: "2labreto" ,
-                        projectName: "2labreto" ,
+                        projectKey: "3labreto" ,
+                        projectName: "3labreto" ,
                         projectVersion: "1.0" ,
                         sources: "/var/jenkins_home/workspace/estasies" ,
                         sonarHostUrl: "http://sonarqube:9000 " ,

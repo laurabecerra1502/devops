@@ -4,7 +4,6 @@ def checkout(Map params){
 
 def scan(Map params){
     def scannerHome = tool "${params.scannerHome}" 
-    //withSonarQubeEnv("${params.scannerHome}") {
     sh "${scannerHome}/bin/sonar-scanner \
         -Dsonar.projectKey=${params.projectKey} \
         -Dsonar.projectName=${params.projectName} \
