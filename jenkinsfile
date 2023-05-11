@@ -14,16 +14,14 @@ pipeline {
         stage('scan') {
             steps {
                 script {
-                    sonarqube.scan(scannerHome: "sonarqube")
-                    sonarqube.sonarqubescan(
-                        scannerHome: "sonarqube" , 
+                    sonarqube.scan(scannerHome: "sonarqube" , 
                         projectKey: "2labreto" ,
                         projectName: "2labreto" ,
                         projectVersion: "1.0" ,
                         sources: "/var/jenkins_home/workspace/estasies" ,
                         sonarHostUrl: "http://sonarqube:9000 " ,
                         sonarLogin: "admin" ,
-                        sonarPassword: "1234"
+                        sonarPassword: "1234" )
                     )
                 }  
             }        
