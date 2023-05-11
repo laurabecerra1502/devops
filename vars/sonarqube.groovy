@@ -10,7 +10,7 @@ def scan(Map params){
 
 def sonarqubescan(Map params) {
     withSonarQubeEnv("${params.scannertool}") {
-        sh "sonarqube/bin/sonar-scanner \
+        sh "scannerHome/bin/sonar-scanner \
             -Dsonar.projectKey=labreto1 \
             -Dsonar.projectName=labreto1 \
             -Dsonar.projectVersion=1.0 \
