@@ -4,12 +4,12 @@ def checkout(Map params){
 
 def scan(Map params){
     environment {
-        scannerHome = tool "${params.scannerhome}"
+        scannerHome = tool "${params.scannerHome}"
     }
 }
 
 def sonarqubescan(Map params) {
-    withSonarQubeEnv("${params.scannertool}") {
+    withSonarQubeEnv("${scannerTool}") {
         sh "${$scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=${projectKey} \
             -Dsonar.projectName=${projectName} \
