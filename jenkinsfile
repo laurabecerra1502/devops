@@ -17,8 +17,8 @@ pipeline {
                     sonarqube.scan(scannerhome: "sonarqube")
                     sonarqube.sonarqubescan(
                         scannertool: "sonarqube" , 
-                        projectKey: "labreto1" ,
-                        projectName: "labreto1" ,
+                        projectKey: "2labreto" ,
+                        projectName: "2labreto" ,
                         projectVersion: "1.0" ,
                         sources: "/var/jenkins_home/workspace/estasies" ,
                         sonarHostUrl: "http://sonarqube:9000 " ,
