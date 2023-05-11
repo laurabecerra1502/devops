@@ -16,9 +16,7 @@ pipeline {
                 script {
                     sonarqube.scan(scannerhome: "sonarqube")
                 }
-            }
-
-            steps {
+        
                 withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=labreto1 \
