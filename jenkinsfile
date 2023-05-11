@@ -15,19 +15,17 @@ pipeline {
             steps {
                 script {
                     sonarqube.scan(scannerhome: "sonarqube")
-                    sonarqube.sonarqubescan(scannertool: "sonarqube" , scannerhome: "sonarqube")
-                }
-                
-/* withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner \
-                        -Dsonar.projectKey=labreto1 \
-                        -Dsonar.projectName=labreto1 \
-                        -Dsonar.projectVersion=1.0 \
-                        -Dsonar.sources=/va r/jenkins_home/workspace/estasies \
-                        -Dsonar.host.url=http://sonarqube:9000 \
-                        -Dsonar.login=admin \
-                        -Dsonar.password=1234 "
-                } */
+                    sonarqube.sonarqubescan(
+                        scannertool: "sonarqube" , 
+                        projectKey: "labreto1" ,
+                        projectName: "labreto1" ,
+                        projectVersion: "1.0" ,
+                        sources: "/var/jenkins_home/workspace/estasies" ,
+                        sonarHostUrl: "http://sonarqube:9000 " ,
+                        sonarLogin: "admin" ,
+                        sonarPassword: "1234"
+                    )
+                }  
             }        
         }        
     }

@@ -10,13 +10,13 @@ def scan(Map params){
 
 def sonarqubescan(Map params) {
     withSonarQubeEnv("${params.scannertool}") {
-        sh "${params.scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=labreto1 \
-            -Dsonar.projectName=labreto1 \
-            -Dsonar.projectVersion=1.0 \
-            -Dsonar.sources=/var/jenkins_home/workspace/estasies \
-            -Dsonar.host.url=http://sonarqube:9000 \
-            -Dsonar.login=admin \
-            -Dsonar.password=1234 "
+        sh "${$scannerHome}/bin/sonar-scanner \
+            -Dsonar.projectKey=${projectKey} \
+            -Dsonar.projectName=${projectName} \
+            -Dsonar.projectVersion=${projectVersion} \
+            -Dsonar.sources=${sources} \
+            -Dsonar.host.url=${sonarHostUrl} \
+            -Dsonar.login=${sonarLogin} \
+            -Dsonar.password=${sonarPassword} "
     }
 }
