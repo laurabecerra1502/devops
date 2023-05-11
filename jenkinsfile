@@ -1,5 +1,4 @@
 @Library('SonarQube') _
-@Library('Hello') MyLab
 
 pipeline {
     agent any
@@ -7,7 +6,7 @@ pipeline {
         stage('Hello') {
             steps {
                 script {
-                    MyLab.good(msn: "Lauris la lindis preciosis")
+                    hello.good(msn: "Lauris la lindis preciosis")
                 }
             }
         }
