@@ -12,15 +12,10 @@ pipeline {
         }
 
         stage('scan') {
-            steps {
-                script {
-                    sonarqube.scan(scannerhome: "sonarqube")
-                }
+            environment {
+                scannerHome = tool 'sonarqube'
             }
-        }
-
-        stage("scan2") {
-            steps {     
+            steps {
                 withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=labreto1 \
