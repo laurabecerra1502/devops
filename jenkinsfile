@@ -12,9 +12,14 @@ pipeline {
         }
 
         stage('scan') {
-            script {
-                sonarqube.scan(scannerhome: "sonarqube")
+            steps {
+                script {
+                    sonarqube.scan(scannerhome: "sonarqube")
+                }
             }
+        }
+
+        stage("scan2") {
             steps {     
                 withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner \
