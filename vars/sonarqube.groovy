@@ -14,7 +14,7 @@ def sonarqubescan(Map params) {
             -Dsonar.projectKey=reto1 \
             -Dsonar.projectName=reto1 \
             -Dsonar.projectVersion=1.0 \
-            -Dsonar.sources=/var/jenkins_home/workspace/retico \
+            -Dsonar.sources=/var/jenkins_home/workspace/estasies \
             -Dsonar.host.url=http://sonarqube:9000 \
             -Dsonar.login=admin \
             -Dsonar.password=1234 "

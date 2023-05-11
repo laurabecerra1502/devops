@@ -9,6 +9,15 @@ pipeline {
                     sonarqube.checkout(branch: "master", gitrepo: "https://github.com/laurabecerra1502/aplicacion-webpage.git")
                 }
             }
+        }
+
+        stage('scan') {
+            steps {
+                script {
+                    sonarqube.scan(scannerhome: "sonarqube")
+                    sonarqube.sonarqubescan(scannertool: "sonarqube")
+                }
+            }
         }        
     }
 }
