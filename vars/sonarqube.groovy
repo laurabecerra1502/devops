@@ -9,7 +9,7 @@ def scan(Map params){
 }
 
 def sonarqubescan(Map params) {
-    withSonarQubeEnv("${scannerTool}") {
+    withSonarQubeEnv("${params.scannerTool}") {
         sh "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=${projectKey} \
             -Dsonar.projectName=${projectName} \
