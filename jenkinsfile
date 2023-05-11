@@ -15,7 +15,6 @@ pipeline {
             steps {
                 script {
                     sonarqube.scan(scannerhome: "sonarqube")
-                    sonarqube.sonarqubescan(scannertool: "sonarqube")
                 }
             }
         }        
