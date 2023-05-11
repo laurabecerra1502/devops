@@ -4,17 +4,16 @@ def checkout(Map params){
 
 def scan(Map params){
     environment {
-        scannerHome = "${params.scannerHome}"
+        scannerHome = tool "${params.scannerHome}"
     }
   
-    withSonarQubeEnv("${params.scannerHome}") {
-        sh "$env.scannerHome/bin/sonar-scanner \
-            -Dsonar.projectKey=${params.projectKey} \
-            -Dsonar.projectName=${params.projectName} \
-            -Dsonar.projectVersion=${params.projectVersion} \
-            -Dsonar.sources=${params.sources} \
-            -Dsonar.host.url=${params.sonarHostUrl} \
-            -Dsonar.login=${params.sonarLogin} \
-            -Dsonar.password=${params.sonarPassword} "
-    }
+    //withSonarQubeEnv("${params.scannerHome}") {
+    sh "${scannerHome}/bin/sonar-scanner \
+        -Dsonar.projectKey=${params.projectKey} \
+        -Dsonar.projectName=${params.projectName} \
+        -Dsonar.projectVersion=${params.projectVersion} \
+        -Dsonar.sources=${params.sources} \
+        -Dsonar.host.url=${params.sonarHostUrl} \
+        -Dsonar.login=${params.sonarLogin} \
+        -Dsonar.password=${params.sonarPassword} "
 }
