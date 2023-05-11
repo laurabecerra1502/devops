@@ -8,7 +8,7 @@ def scan(Map params){
     }
   
     withSonarQubeEnv("${params.scannerHome}") {
-        sh "${scannerHome}/bin/sonar-scanner \
+        sh "$env.scannerHome/bin/sonar-scanner \
             -Dsonar.projectKey=${params.projectKey} \
             -Dsonar.projectName=${params.projectName} \
             -Dsonar.projectVersion=${params.projectVersion} \
