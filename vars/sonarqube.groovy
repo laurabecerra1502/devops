@@ -6,17 +6,15 @@ def scan(Map params){
     environment {
         scannerHome = tool "${params.scannerHome}"
     }
-}
-
-def sonarqubescan(Map params) {
-    withSonarQubeEnv("${params.scannerTool}") {
-        sh "${scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=${projectKey} \
-            -Dsonar.projectName=${projectName} \
-            -Dsonar.projectVersion=${projectVersion} \
-            -Dsonar.sources=${sources} \
-            -Dsonar.host.url=${sonarHostUrl} \
-            -Dsonar.login=${sonarLogin} \
-            -Dsonar.password=${sonarPassword} "
+  
+    withSonarQubeEnv("${params.scannerHome}") {
+        sh "${params.scannerHome}/bin/sonar-scanner \
+            -Dsonar.projectKey=${params.projectKey} \
+            -Dsonar.projectName=${params.projectName} \
+            -Dsonar.projectVersion=${params.projectVersion} \
+            -Dsonar.sources=${params.sources} \
+            -Dsonar.host.url=${params.sonarHostUrl} \
+            -Dsonar.login=${params.sonarLogin} \
+            -Dsonar.password=${params.sonarPassword} "
     }
 }
