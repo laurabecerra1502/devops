@@ -1,0 +1,14 @@
+@Library('SonarQube')
+
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    sonarqube.checkout(branch: "master", gitrepo: "https://github.com/laurabecerra1502/aplicacion-webpage.git")
+                }
+            }
+        }        
+    }
+}
