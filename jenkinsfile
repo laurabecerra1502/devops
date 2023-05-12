@@ -1,12 +1,14 @@
 @Library('SonarQube') _
 
+load 'Jenkinsfile'
+
 pipeline {
     agent any
     stages {
         stage('Hello') {
             steps {
                 script {
-                    hello.good(msn: "Lauris la lindis preciosis")
+                    build.good(msn: "Lauris la lindis preciosis")
                 }
             }
         }
