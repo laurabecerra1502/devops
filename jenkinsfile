@@ -1,7 +1,5 @@
 @Library('SonarQube') _
 
-load 'Jenkinsfile'
-
 pipeline {
     agent any
     stages {
