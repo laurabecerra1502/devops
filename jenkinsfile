@@ -1,4 +1,4 @@
-//@Library('SonarQube') _
+@Library('SonarQube') _
 
 pipeline {
     agent any
