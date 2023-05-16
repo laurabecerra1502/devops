@@ -1,6 +1,8 @@
-def checkout(Map params){
+/*def git(Map params){
     git branch: "${params.branch}", url: "${params.gitrepo}" 
 }
+*/
+package com.devops
 
 def scan(Map params){
     def scannerHome = tool "${params.scannerHome}" 

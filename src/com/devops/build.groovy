@@ -1,5 +1,7 @@
 package com.devops
 
-def hello(mensaje){
-    echo "Good Morning ${mensaje}"
+def hello(Map params){
+    echo "Good Morning ${params.mensaje}"
+    echo "El analisis es: ${params.variables}"
 }
+
