@@ -8,7 +8,7 @@ def call(Map params){
                 steps {
                     script {
                         def z = new com.devops.build()
-                        z.build()
+                        z.build(msn)
                     }
                 }
                 
