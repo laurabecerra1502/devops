@@ -1,5 +1,5 @@
 package com.devops
 
-def call(Map params){
-    echo "Good Morning ${params.msn}"
+def hello(mensaje){
+    echo "Good Morning ${mensaje}"
 }
