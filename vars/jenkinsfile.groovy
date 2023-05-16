@@ -7,13 +7,15 @@ def jenkins(Map params){
             stage('Hello') {
                 steps {
                     script {
-                        build.good()
+                        def z = new org.foo.build()
+                        z.build.good(params.msn)
                     }
                 }
                 
             }
+        }
         
-            stage('Checkout') {
+            /*stage('Checkout') {
                 steps {
                     script {
                         sonarqube.checkout()
@@ -28,6 +30,6 @@ def jenkins(Map params){
                     }  
                 }        
             }
-        }
+        }*/
     }
 }
