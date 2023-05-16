@@ -1,5 +1,5 @@
 package com.devops
 
-def good(mensaje){
+def call(mensaje){
     echo "Good Morning ${mensaje}"
 }
