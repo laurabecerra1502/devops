@@ -1,4 +1,4 @@
-def jenkinsfile(Map params){
+def jenkins(Map params){
 
     pipeline {
         agent any
