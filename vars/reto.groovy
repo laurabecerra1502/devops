@@ -13,23 +13,15 @@ def call(Map params){
                 }
                 
             }
-        }
         
-            /*stage('Checkout') {
-                steps {
-                    script {
-                        sonarqube.checkout()
-                    }
-                }
-            }
-
             stage('scan') {
                 steps {
                     script {
-                        sonarqube.scan()
+                        def x = new com.devops.sonarqube()
+                        z.scan(scannerHome: params.home)
                     }  
                 }        
             }
-        }*/
+        }
     }
 }
