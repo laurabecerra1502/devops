@@ -18,7 +18,7 @@ def call(Map params){
                 steps {
                     script {
                         def x = new com.devops.sonarqube()
-                        z.scan(scannerHome: params.home)
+                        x.scan(scannerHome: params.home)
                     }  
                 }        
             }
