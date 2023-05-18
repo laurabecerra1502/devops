@@ -8,7 +8,8 @@ def call(Map params){
                 steps {
                     script {
                         def one = new org.devops.build()
-                        one.application(message: params.message, application: params.application)
+                        one.application(message: params.message, 
+                                        application: params.application)
                     }
                 }
                 
@@ -18,7 +19,7 @@ def call(Map params){
                 steps {
                     script {
                         def second = new org.devops.sonarqube()
-                        second.scan(home: params.scannerhome, 
+                        second.scan(home: params.scannerHome, 
                                     key: params.projectkey, 
                                     name: params.projectname, 
                                     version: params.version,
