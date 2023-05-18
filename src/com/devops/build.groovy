@@ -1,7 +1,7 @@
 package com.devops
 
 def hello(Map params){
-    echo "Good Morning ${params.mensaje}"
-    echo "El analisis es crrrrrrrrrrrrrrrrrecto ${params.variable}"
+    echo "Hello World ${params.mensaje}"
+    echo "La aplicación que se va a analizar es ${params.variable}"
 }
 
