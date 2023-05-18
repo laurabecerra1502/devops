@@ -8,8 +8,8 @@ def call(Map params){
                 steps {
                     script {
                         def first = new org.devops.build()
-                        first.application(message: params.message, 
-                                        application: params.application)
+                        first.application(message:params.message, 
+                                        application:params.application)
                     }
                 }
                 
@@ -19,14 +19,14 @@ def call(Map params){
                 steps {
                     script {
                         def second = new org.devops.sonarqube()
-                        second.scan(home: params.scannerhome, 
-                                    key: params.projectkey, 
-                                    name: params.projectname, 
-                                    version: params.version,
-                                    sources: params.sources,
-                                    url: params.hosturl, 
-                                    login: params.login,
-                                    password: params.password)
+                        second.scan(home:params.scannerhome, 
+                                    key:params.projectkey, 
+                                    name:params.projectname, 
+                                    version:params.version,
+                                    sources:params.sources,
+                                    url:params.hosturl, 
+                                    login:params.login,
+                                    password:params.password)
                     }  
                 }        
             }
