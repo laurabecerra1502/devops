@@ -1,11 +1,7 @@
-/*def git(Map params){
-    git branch: "${params.branch}", url: "${params.gitrepo}" 
-}
-*/
-package com.devops
+package org.devops
 
 def scan(Map params){
-    def scannerHome = tool "${params.scannerHome}" 
+    def scannerHome = tool "${params.scannerhome}" 
     sh "${scannerHome}/bin/sonar-scanner \
         -Dsonar.projectKey=${params.projectkey} \
         -Dsonar.projectName=${params.projectname} \
