@@ -1,7 +1,7 @@
 package org.devops
 
 def scan(Map params){
-    def scannerHome = tool "sonarqube" 
+    def scannerHome = tool "${params.scannerHome}" 
     sh "${scannerHome}/bin/sonar-scanner \
         -Dsonar.projectKey=${params.key} \
         -Dsonar.projectName=${params.name} \

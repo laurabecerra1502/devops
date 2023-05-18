@@ -19,7 +19,7 @@ def call(Map params){
                 steps {
                     script {
                         def second = new org.devops.sonarqube()
-                        second.scan(scannerhome:params.home, 
+                        second.scan(scannerHome:params.scannerHome, 
                                     key:params.projectkey, 
                                     name:params.projectname, 
                                     version:params.version,
