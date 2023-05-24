@@ -39,6 +39,13 @@ def call(Map params){
                     }  
                 }        
             }
-        }
+
+            stage('Docker Image') {
+                steps {
+                    def fourth = new.org.devops.buildimage()
+                    fourth.image(image:params.buildimage)
+                }
+            }
+        }   
     }
 }
