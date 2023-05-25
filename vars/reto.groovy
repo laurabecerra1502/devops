@@ -49,7 +49,7 @@ def call(Map params){
             stage('Push') {
                 steps {
                     withDockerRegistry([url: 'https://registry-1.docker.io/', credentialsId: 'retofase2']) {
-                        sh 'docker push laurabecerra/reto2:latest'
+                        sh 'docker push reto2:latest'
                     }               
                 }
             }        
