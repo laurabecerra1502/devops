@@ -50,6 +50,7 @@ def call(Map params){
                 steps {
                     withDockerRegistry([url: 'https://hub.docker.com/u/laurabecerra', credentialsId: 'retofase2']) {
                         sh 'docker push laurabecerra/reto2:latest'
+                    }               
                 }
             }        
         }
