@@ -49,7 +49,7 @@ def call(Map params){
             stage('Push') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'retofase2', usernameVariable: 'laurabecerra', passwordVariable: 'Wanderlust2023++')]) {
-                        sh "docker login -u $USERNAME -p $PASSWORD"
+                        sh "docker login -u laurabecerra -p Wanderlust2023++"
                         sh 'docker push laurabecerra/reto2'
                     }
                 }        
