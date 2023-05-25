@@ -65,7 +65,7 @@ def call(Map params){
                 steps {
                     script {
                         echo "escaneo de la aplicacion"
-                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:8084/ -r report.html -I'
+                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:8084/#slide=1 -r report.html -I'
                     }
                 }
             }
