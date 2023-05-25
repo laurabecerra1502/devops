@@ -49,8 +49,7 @@ def call(Map params){
             stage('Push') {
                 steps {
                     sh 'docker login -u laurabecerra -p Wanderlust2023++'
-                    sh 'docker tag reto2 laurabecerra/reto2:1.0'
-                    sh 'docker push laurabecerra/reto2:1.0'
+                    sh 'docker push reto2'
                     }               
              }
         }        
