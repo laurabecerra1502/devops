@@ -42,7 +42,7 @@ def call(Map params){
 
             stage('Build') {
                 steps {
-                    sh 'docker build -t reto2'
+                    sh 'docker build -t reto2 .'
                 }
             }
     
