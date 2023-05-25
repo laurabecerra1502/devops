@@ -51,9 +51,8 @@ def call(Map params){
                     /*withCredentials([usernamePassword(credentialsId: 'retofase2')]) { */
                     sh "docker login -u laurabecerra -p Wanderlust2023++"
                     sh "docker push reto2:latest"
-                    }
-                }        
-            }
-        }   
-    }
+                }
+            }        
+        }
+    }   
 }
