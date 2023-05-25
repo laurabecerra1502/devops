@@ -59,8 +59,27 @@ def call(Map params){
                 steps {
                         sh 'docker run -d --name retoff -p 8084:80 reto2'
                     }
-            } 
-        }                  
-    }        
+            }
+
+            stage('Escaneo de la aplicación') {
+                steps {
+                    script {
+                        echo "escaneo de la aplicacion"
+                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:8084/ -r report.html -I'
+                    }
+                }
+            }
+
+            stage('Copia en el wrk de jenkins') {
+                steps {
+                    script {
+                        echo "escaneo"
+                            sh 'docker cp owasp:/zap/wrk/report.html report.html'
+                            sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
+                    }
+                }
+            }
+        }
+    }       
 }
    
