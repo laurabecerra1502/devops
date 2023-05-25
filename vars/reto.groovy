@@ -43,11 +43,20 @@ def call(Map params){
             stage('Docker Image') {
                 steps {
                     script {
-                        def fourth = new org.devops.buildimage()
-                        fourth.image(image:params.buildimage)
+                        dockerImage = docker build -t reto2 .
                     }
                 }
             }
+            
+            stage('Push') {
+                steps {
+                    script {
+                        docker.withRegistry('', 'retofase2') {
+                            dockerImage.push()
+                        }
+                    }
+                }
+            } 
         }   
     }
 }
