@@ -51,7 +51,7 @@ def call(Map params){
             stage('Push') {
                 steps {
                     script {
-                        docker.withRegistry('', 'reto2') {
+                        docker.withRegistry('', 'retofase2') {
                             dockerImage.push()
                         }
                     }
