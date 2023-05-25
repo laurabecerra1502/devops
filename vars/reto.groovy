@@ -59,8 +59,8 @@ def call(Map params){
                 steps {
                         sh 'docker run -d --name retof -p 8084:80 reto2'
                     }
-                } 
-            }                  
-        }        
-    }
-}   
+            } 
+        }                  
+    }        
+}
+   
