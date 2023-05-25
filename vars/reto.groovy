@@ -43,7 +43,7 @@ def call(Map params){
             stage('Docker Image') {
                 steps {
                     script {
-                        dockerImage = docker build -t reto2 .
+                        dockerImage = docker build 'reto2:latest'
                     }
                 }
             }
