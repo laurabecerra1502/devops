@@ -52,8 +52,15 @@ def call(Map params){
                         sh 'docker tag reto2 laurabecerra/reto2:latest'
                         sh 'docker push laurabecerra/reto2:latest'
                     }
-                    }               
-             }
+                } 
+            } 
+
+            stage('Run') {
+                steps {
+                        sh 'docker run -d --name retof -p 8084:80 reto2'
+                    }
+                } 
+            }                  
         }        
     }
 }   
