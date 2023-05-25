@@ -40,23 +40,20 @@ def call(Map params){
                 }        
             }
 
-            stage('Docker Image') {
+            stage('Build') {
                 steps {
-                    script {
-                        dockerImage = docker.build 'reto2:latest'
-                    }
+                    sh 'docker build -t reto2'
                 }
             }
-            
+    
             stage('Push') {
                 steps {
-                    script {
-                        docker.withRegistry('', 'retofase2') {
-                            dockerImage.push()
-                        }
+                    withCredentials([usernamePassword(credentialsId: 'retofase2', usernameVariable: 'laurabecerra', passwordVariable: 'Wanderlust2023++')]) {
+                        sh "docker login -u $USERNAME -p $PASSWORD"
+                        sh 'docker push laurabecerra/reto2'
                     }
-                }
-            } 
+                }        
+            }
         }   
     }
 }
