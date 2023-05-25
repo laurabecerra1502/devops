@@ -4,7 +4,7 @@ def call(Map params){
         agent any
 
         stages {
-            stage('Hello') {
+            /*stage('Hello') {
                 steps {
                     script {
                         def first = new org.devops.build()
@@ -78,7 +78,20 @@ def call(Map params){
                             sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
                     }
                 }
+            }*/
+
+            stages {
+                stage('Owasp-ZAP') {
+                    steps {
+                        script {
+                            sh "curl -Ls https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz -o ${env.WORKSPACE}/owasp.zip"
+                            sh "tar -xf ${env.WORKSPACE}/owasp.zip"
+                            sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://localhost:8084/#slide=1 -quickprogress -quickout ${env.WORKSPACE}/report.html"
+                }
             }
+        }
+         
+     }
         }
     }       
 }
