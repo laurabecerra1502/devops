@@ -38,7 +38,7 @@ def call(Map params){
                         third.results()
                     }  
                 }        
-            }*/
+            }
 
             stage('Build') {
                 steps {
@@ -53,11 +53,11 @@ def call(Map params){
                         sh 'docker push laurabecerra/retof2:latest'
                     }
                 } 
-            }
+            }*/
 
             stage('Run') {
                 steps {
-                        sh 'docker run -d --name retof2 -p 8087:5500 retof2'
+                        sh 'docker run -d --name reticomario -p 8087:5500 retof2'
                     }
             }
 
