@@ -4,7 +4,7 @@ def call(Map params){
         agent any
 
         stages {
-            stage('Hello') {
+            /*stage('Hello') {
                 steps {
                     script {
                         def first = new org.devops.build()
@@ -53,7 +53,7 @@ def call(Map params){
                         sh 'docker push laurabecerra/retof2:latest'
                     }
                 } 
-            } 
+            }*/
 
             stage('Run') {
                 steps {
