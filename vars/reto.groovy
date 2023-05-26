@@ -4,7 +4,7 @@ def call(Map params){
         agent any
 
         stages {
-            /*stage('Hello') {
+            stage('Hello') {
                 steps {
                     script {
                         def first = new org.devops.build()
@@ -42,22 +42,22 @@ def call(Map params){
 
             stage('Build') {
                 steps {
-                    sh 'docker build -t reto2 .'
+                    sh 'docker build -t retof2 .'
                 }
             }
     
             stage('Push') {
                 steps {
                     withDockerRegistry([ credentialsId: "retofase2", url: "https://index.docker.io/v1/" ]) {
-                        sh 'docker tag reto2 laurabecerra/reto2:latest'
-                        sh 'docker push laurabecerra/reto2:latest'
+                        sh 'docker tag retof2 laurabecerra/retof2:latest'
+                        sh 'docker push laurabecerra/retof2:latest'
                     }
                 } 
             } 
 
             stage('Run') {
                 steps {
-                        sh 'docker run -d --name retoff -p 8084:80 reto2'
+                        sh 'docker run -d --name retoff -p 8087:80 retof2'
                     }
             }
 
@@ -78,7 +78,7 @@ def call(Map params){
                             sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
                     }
                 }
-            }*/
+            }
 
             stage('Owasp-ZAP') {
                 steps {
