@@ -4,7 +4,7 @@ def call(Map params){
         agent any
 
         stages {
-            stage('Hello') {
+            /*stage('Hello') {
                 steps {
                     script {
                         def first = new org.devops.build()
@@ -15,7 +15,7 @@ def call(Map params){
                 
             }
         
-            /*stage('Scanner') {
+            stage('Scanner') {
                 steps {
                     script {
                         def second = new org.devops.analisis()
@@ -38,7 +38,7 @@ def call(Map params){
                         third.results()
                     }  
                 }        
-            }*/
+            }
 
             stage('Build Image') {
                 steps {
@@ -48,7 +48,7 @@ def call(Map params){
                 }
             }
     
-            /*stage('Push Image') {
+            stage('Push Image') {
                 steps {
                     script {
                         def fifth = new org.devops.publicacion()
@@ -56,7 +56,7 @@ def call(Map params){
                     }
                     
                 } 
-            }*/
+            }
 
             stage('Deploy Image') {
                 steps {
@@ -82,7 +82,7 @@ def call(Map params){
                             sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
                     }
                 }
-            }
+            }*/
 
             stage('Owasp-ZAP') {
                 steps {
