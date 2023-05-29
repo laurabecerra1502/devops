@@ -7,7 +7,7 @@ def call(Map params){
             stage('Hello') {
                 steps {
                     script {
-                        def first = new org.devops.1build()
+                        def first = new org.devops.build()
                         first.application(message:params.message, 
                                         application:params.application)
                     }
