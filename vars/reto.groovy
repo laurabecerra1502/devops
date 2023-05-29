@@ -7,7 +7,7 @@ def call(Map params){
             stage('Hello') {
                 steps {
                     script {
-                        def first = new org.devops.build()
+                        def first = new org.devops.1build()
                         first.application(message:params.message, 
                                         application:params.application)
                     }
@@ -18,7 +18,7 @@ def call(Map params){
             stage('Scanner') {
                 steps {
                     script {
-                        def second = new org.devops.sonarqube()
+                        def second = new org.devops.2analisis()
                         second.scan(scannerHome:params.scannerHome, 
                                     key:params.projectkey, 
                                     name:params.projectname, 
@@ -34,38 +34,45 @@ def call(Map params){
             stage('Results') {
                 steps {
                     script {
-                        def third = new org.devops.build()
+                        def third = new org.devops.1build()
                         third.results()
                     }  
                 }        
             }
 
-            stage('Build') {
+            stage('Build Image') {
                 steps {
-                    sh 'docker build -t retof2 .'
+                    script {
+                        def fourth = new org.devops.3buildimagen()
+                        fourth.image(image:params.image)
+                    }
                 }
             }
     
-            stage('Push') {
+            stage('Push Image') {
                 steps {
-                    withDockerRegistry([ credentialsId: "retofase2", url: "https://index.docker.io/v1/" ]) {
-                        sh 'docker tag retof2 laurabecerra/retof2:latest'
-                        sh 'docker push laurabecerra/retof2:latest'
+                    script {
+                        def fifth = new org.devops.4publicacion()
+                        fifth.push()
                     }
+                    
                 } 
             }
 
-            stage('Run') {
+            stage('Deploy Image') {
                 steps {
-                        sh 'docker run -d --name retofase2 -p 3000:80 retof2'
+                    script {
+                        def sixth = new org.devops.5deploy()
+                        sixth.deploy()
                     }
+                }
             }
 
             stage('Escaneo de la aplicación') {
                 steps {
                     script {
                         echo "escaneo de la aplicacion"
-                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:8084/#slide=1 -r report.html -I'
+                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:3000/ -r report.html -I'
                     }
                 }
             }
