@@ -15,7 +15,7 @@ def call(Map params){
                 
             }
         
-            stage('Scanner') {
+            /*stage('Scanner') {
                 steps {
                     script {
                         def second = new org.devops.analisis()
@@ -38,18 +38,16 @@ def call(Map params){
                         third.results()
                     }  
                 }        
-            }
+            }*/
 
             stage('Build Image') {
                 steps {
-                    script {
-                        def fourth = new org.devops.buildimagen()
-                        fourth.image(image:params.image)
-                    }
+                    sh "docker build -t mariohtml ."
+
                 }
             }
     
-            stage('Push Image') {
+            /*stage('Push Image') {
                 steps {
                     script {
                         def fifth = new org.devops.publicacion()
@@ -57,14 +55,12 @@ def call(Map params){
                     }
                     
                 } 
-            }
+            }*/
 
             stage('Deploy Image') {
                 steps {
-                    script {
-                        def sixth = new org.devops.deploy()
-                        sixth.deploy()
-                    }
+                    sh 'docker run -d --name jueguito -p 3000:80 mariohtml' 
+                    
                 }
             }
 
