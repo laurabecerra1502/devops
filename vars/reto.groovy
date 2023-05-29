@@ -57,7 +57,7 @@ def call(Map params){
 
             stage('Run') {
                 steps {
-                        sh 'docker run -d --name reticomario -p 8087:5500 retof2'
+                        sh 'docker run -d --name retofase2 -p 3000:80 retof2'
                     }
             }
 
