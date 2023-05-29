@@ -65,7 +65,7 @@ def call(Map params){
                 }
             }
 
-            stage('Escaneo de la aplicación') {
+            /*stage('Escaneo de la aplicación') {
                 steps {
                     script {
                         echo "escaneo de la aplicacion"
