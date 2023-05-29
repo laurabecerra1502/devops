@@ -42,6 +42,7 @@ def call(Map params){
 
             stage('Build Image') {
                 steps {
+                    echo "${env.GIT_URL}"
                     sh "docker build -t mariohtml ."
 
                 }
