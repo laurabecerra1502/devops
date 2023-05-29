@@ -69,7 +69,7 @@ def call(Map params){
                 steps {
                     script {
                         echo "escaneo de la aplicacion"
-                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:5002/ -r report.html -I'
+                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:5002 -r report.html -I'
                     }
                 }
             }
@@ -89,7 +89,7 @@ def call(Map params){
                     script {
                         sh "curl -Ls https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz -o ${env.WORKSPACE}/owasp.zip"
                         sh "tar -xf ${env.WORKSPACE}/owasp.zip"
-                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://localhost:5002/ -quickprogress -quickout ${env.WORKSPACE}/report.html"
+                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://localhost:5002 -quickprogress -quickout ${env.WORKSPACE}/report.html"
                     }
                 }
             }
