@@ -18,7 +18,7 @@ def call(Map params){
             stage('Scanner') {
                 steps {
                     script {
-                        def second = new org.devops.2analisis()
+                        def second = new org.devops.analisis()
                         second.scan(scannerHome:params.scannerHome, 
                                     key:params.projectkey, 
                                     name:params.projectname, 
@@ -34,7 +34,7 @@ def call(Map params){
             stage('Results') {
                 steps {
                     script {
-                        def third = new org.devops.1build()
+                        def third = new org.devops.build()
                         third.results()
                     }  
                 }        
@@ -43,7 +43,7 @@ def call(Map params){
             stage('Build Image') {
                 steps {
                     script {
-                        def fourth = new org.devops.3buildimagen()
+                        def fourth = new org.devops.buildimagen()
                         fourth.image(image:params.image)
                     }
                 }
@@ -52,7 +52,7 @@ def call(Map params){
             stage('Push Image') {
                 steps {
                     script {
-                        def fifth = new org.devops.4publicacion()
+                        def fifth = new org.devops.publicacion()
                         fifth.push()
                     }
                     
@@ -62,7 +62,7 @@ def call(Map params){
             stage('Deploy Image') {
                 steps {
                     script {
-                        def sixth = new org.devops.5deploy()
+                        def sixth = new org.devops.deploy()
                         sixth.deploy()
                     }
                 }
