@@ -60,7 +60,7 @@ def call(Map params){
 
             stage('Deploy Image') {
                 steps {
-                    sh 'docker run -d --name jueguito -p 3000:80 mariohtml' 
+                    sh 'docker run -p 5001:80 mariohtml' 
                     
                 }
             }
