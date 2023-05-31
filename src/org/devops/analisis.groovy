@@ -2,7 +2,7 @@ package org.devops
 
 def scanner(PROJECT){
     def scannerHome = tool 'sonarqube' 
-    withSonarQubeEn('sonarqube'){ 
+    withSonarQubeEnv('sonarqube'){ 
     sh "${scannerHome}/bin/sonar-scanner \
         -Dsonar.projectKey=${PROJECT} \
         -Dsonar.projectName=${PROJECT} \
