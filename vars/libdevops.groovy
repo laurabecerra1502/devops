@@ -4,12 +4,12 @@ def call(Map params){
         agent any
 
         stages {
-            stage('Clone Repository') {
+            /*stage('Clone Repository') {
                 steps {
                     sh "git clone ${GIT_URL}"
                 }
                 
-            }
+            }*/
 
             stage('Hello') {
                 steps {
