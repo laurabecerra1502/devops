@@ -8,7 +8,7 @@ def call(Map params){
         }
 
         stages {
-            /*stage('Construccion Aplicación') {
+            stage('Construccion Aplicación') {
                 steps {
                     script {
                         def first = new org.devops.build()
@@ -40,17 +40,13 @@ def call(Map params){
                         third.buildimage("${env.PROJECT}")
                     }
                 }
-            }*/
+            }
     
             stage('Push Imagen') {
                 steps {
                     script {
-                        /*def giturl = "${env.GIT_URL} | awk -F/ '{print $4}'"*/
-                        def giturl = sh(script: "echo ${env.GIT_URL} | awk -F/ '{print $4}'", returnStdout: true).trim()
-                        env.PROJECT = giturl
-                        echo "${env.PROJECT}"
-                        /*def fifth = new org.devops.publicacion()
-                        fifth.push()*/
+                        def fifth = new org.devops.push()
+                        fifth.pushimage("${env.PROJECT}")
                     }
                     
                 } 
