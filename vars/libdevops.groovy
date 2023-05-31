@@ -15,14 +15,13 @@ def call(Map params){
                 steps {
                     script {
                         def first = new org.devops.build()
-                        first.application(message:params.message, 
-                                        application:params.application)
+                        first.application()
                     }
                 }
                 
             }
         
-            stage('Scanner') {
+            /*stage('Scanner') {
                 steps {
                     script {
                         def second = new org.devops.analisis()
@@ -89,7 +88,7 @@ def call(Map params){
                             sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
                     }
                 }
-            }*/
+            }
 
             stage('Owasp-ZAP') {
                 steps {
@@ -99,7 +98,7 @@ def call(Map params){
                         sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://localhost:5002 -quickprogress -quickout ${env.WORKSPACE}/report.html"
                     }
                 }
-            }
+            }*/
         }
         
     }       
