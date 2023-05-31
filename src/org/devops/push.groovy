@@ -1,8 +1,8 @@
 package org.devops
 
-def push(Map params){
+def pushimage(PROJECT){
     withDockerRegistry([ credentialsId: "retofase2", url: "https://index.docker.io/v1/" ]) {
-        sh 'docker tag retof2 laurabecerra/retof2:latest'
-        sh 'docker push laurabecerra/retof2:latest'
+        sh "docker tag ${PROJECT} laurabecerra/:${env.BUILD_ID}"
+        sh "docker push laurabecerra/retof2:latest"
         }
 }
