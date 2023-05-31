@@ -13,7 +13,7 @@ def call(Map params){
                     sh "git clone ${GIT_URL}"
                 }
                 
-            }
+            }*/
 
             stage('Hello') {
                 steps {
