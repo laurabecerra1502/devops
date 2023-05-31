@@ -1,6 +1,6 @@
 package org.devops
 
-def application(Map params){
+def application(){
     sh 'node -v'
     sh 'node install'
 }
