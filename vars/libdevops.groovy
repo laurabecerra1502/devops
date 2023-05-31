@@ -33,9 +33,6 @@ def call(Map params){
             stage('Build Imagen') {
                 steps {
                     script {
-                        def giturl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
-                        def gitname = giturl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
-                        env.PROJECT = gitname
                         def third = new org.devops.image()
                         third.buildimage("${env.PROJECT}")
                     }
