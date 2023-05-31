@@ -1,6 +1,6 @@
 package org.devops
 
-def application(){
+def install(){
     sh 'npm install'
 }
 

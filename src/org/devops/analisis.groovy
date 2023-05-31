@@ -1,13 +1,12 @@
 package org.devops
 
-def scan(Map params){
-    def scannerHome = tool "${params.scannerHome}" 
+def scanner(PROJECT){
+    def scannerHome = tool 'sonarqube' 
+    withSonarQubeEn('sonarqube'){ 
     sh "${scannerHome}/bin/sonar-scanner \
-        -Dsonar.projectKey=${params.key} \
-        -Dsonar.projectName=${params.name} \
-        -Dsonar.projectVersion=${params.version} \
-        -Dsonar.sources=${params.sources} \
-        -Dsonar.host.url=${params.url} \
-        -Dsonar.login=${params.login} \
-        -Dsonar.password=${params.password} "
+        -Dsonar.projectKey=${PROJECT} \
+        -Dsonar.projectName=${PROJECT} \
+        -Dsonar.sources=${env.WORKSPACE} "
+    }  
 }
+

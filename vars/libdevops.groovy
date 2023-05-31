@@ -8,40 +8,36 @@ def call(Map params){
         }
 
         stages {
-            /*stage('Clone Repository') {
+            stage('Clonar Repositorio') {
                 steps {
-                    sh "git clone ${GIT_URL}"
+                    sh "git clone ${env.GIT_URL}"
                 }
                 
-            }*/
+            }
 
-            stage('Hello') {
+            stage('Construccion Aplicación') {
                 steps {
                     script {
                         def first = new org.devops.build()
-                        first.application()
+                        first.install()
                     }
                 }
                 
             }
         
-            /*stage('Scanner') {
+            stage('Escaneo SonarQube') {
                 steps {
                     script {
+                        def gitRepoUrl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
+                        def gitRepoName = gitRepoUrl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+                        env.PROJECT = gitRepoName
                         def second = new org.devops.analisis()
-                        second.scan(scannerHome:params.scannerHome, 
-                                    key:params.projectkey, 
-                                    name:params.projectname, 
-                                    version:params.version,
-                                    sources:params.sources,
-                                    url:params.hosturl, 
-                                    login:params.login,
-                                    password:params.password)
+                        second.scanner("${env.PROJECT}")
                     }  
                 }        
             }
 
-            stage('Results') {
+            /*stage('Results') {
                 steps {
                     script {
                         def third = new org.devops.build()
@@ -66,7 +62,7 @@ def call(Map params){
                     }
                     
                 } 
-            }*/
+            }
 
             stage('Deploy Image') {
                 steps {
