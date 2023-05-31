@@ -2,6 +2,6 @@ package org.devops
 
 def application(){
     sh 'node -v'
-    sh 'node install'
+    sh 'npm install'
 }
 
