@@ -8,13 +8,6 @@ def call(Map params){
         }
 
         stages {
-            stage('Clonar Repositorio') {
-                steps {
-                    sh "git clone ${env.GIT_URL}"
-                }
-                
-            }
-
             stage('Construccion Aplicación') {
                 steps {
                     script {
