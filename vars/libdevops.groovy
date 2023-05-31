@@ -45,7 +45,7 @@ def call(Map params){
             stage('Push Imagen') {
                 steps {
                     script {
-                        def giturl = "${env.GIT_URL} | awk -F/ '{print $4}'"
+                        /*def giturl = "${env.GIT_URL} | awk -F/ '{print $4}'"*/
                         def giturl = sh(script: "echo ${env.GIT_URL} | awk -F/ '{print $4}'", returnStdout: true).trim()
                         env.PROJECT = giturl
                         echo "${env.PROJECT}"
