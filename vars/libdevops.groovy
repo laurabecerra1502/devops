@@ -52,7 +52,7 @@ def call(Map params){
                 } 
             }
 
-            stage('Deploy Image') {
+            /*stage('Deploy Image') {
                 steps {
                     sh "docker build -t reactapp ."
                     sh 'docker run -p 8003:3000 -d reactapp'
