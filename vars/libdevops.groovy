@@ -13,7 +13,7 @@ def call(Map params){
                     sh "git clone ${GIT_URL}"
                 }
                 
-            }*/
+            }
 
             stage('Hello') {
                 steps {
@@ -66,11 +66,12 @@ def call(Map params){
                     }
                     
                 } 
-            }
+            }*/
 
             stage('Deploy Image') {
                 steps {
-                    sh 'docker run -p 5002:80 -d mariohtml'
+                    sh "docker build -t reactapp ."
+                    sh 'docker run -p 5050:80 -d reactapp'
                     
                 }
             }
