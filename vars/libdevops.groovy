@@ -21,9 +21,9 @@ def call(Map params){
             stage('Escaneo SonarQube') {
                 steps {
                     script {
-                        def gitRepoUrl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
-                        def gitRepoName = gitRepoUrl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
-                        env.PROJECT = gitRepoName
+                        def giturl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
+                        def gitname = giturl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+                        env.PROJECT = gitname
                         def second = new org.devops.analisis()
                         second.scanner("${env.PROJECT}")
                     }  
@@ -93,7 +93,22 @@ def call(Map params){
                     }
                 }
             }*/
+
+
         }
+
+        post {
+        success {
+            echo "Build Success"
+            echo "Successfully built ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+        }
+        failure {
+            echo "Build Failed - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+        }
+        aborted {
+            echo " ${env.JOB_BASE_NAME} Build - ${env.BUILD_ID} Aborted!"
+        }
+    }
         
     }       
 }
