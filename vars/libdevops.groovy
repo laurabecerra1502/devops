@@ -30,24 +30,19 @@ def call(Map params){
                 }        
             }
 
-            /*stage('Results') {
+            stage('Build Imagen') {
                 steps {
                     script {
-                        def third = new org.devops.build()
-                        third.results()
-                    }  
-                }        
-            }
-
-            stage('Build Image') {
-                steps {
-                    echo "${env.GIT_URL}"
-                    sh "docker build -t mariohtml ."
-
+                        def giturl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
+                        def gitname = giturl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+                        env.PROJECT = gitname
+                        def third = new org.devops.image()
+                        third.buildimage("${env.PROJECT}")
+                    }
                 }
             }
     
-            stage('Push Image') {
+            /*stage('Push Image') {
                 steps {
                     script {
                         def fifth = new org.devops.publicacion()
@@ -98,17 +93,16 @@ def call(Map params){
         }
 
         post {
-        success {
-            echo "Build Success"
-            echo "Successfully built ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+            success {
+                echo "Build Success - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+            }
+            failure {
+                echo "Build Failed - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+            }
+            aborted {
+                echo "Build Aborted - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+            }
         }
-        failure {
-            echo "Build Failed - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
-        }
-        aborted {
-            echo " ${env.JOB_BASE_NAME} Build - ${env.BUILD_ID} Aborted!"
-        }
-    }
         
     }       
 }
