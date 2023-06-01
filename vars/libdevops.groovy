@@ -16,7 +16,7 @@ def call(Map params){
                     }
                 }
                 
-            }*/
+            }
         
             stage('Escaneo SonarQube') {
                 steps {
@@ -62,13 +62,12 @@ def call(Map params){
                         }
                     }    
                 }                                        
-            }
+            }*/
 
-            /*stage('Escaneo de la aplicación') {
+            stage('Escaneo de la aplicación') {
                 steps {
                     script {
-                        echo "escaneo de la aplicacion"
-                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:5002 -r report.html -I'
+                        sh 'docker exec owasp zap-full-scan.py -t http://marioo:5000 -r report.html -I'
                     }
                 }
             }
@@ -81,9 +80,7 @@ def call(Map params){
                             sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
                     }
                 }
-            }*/
-
-            
+            }          
         }
 
         post {
