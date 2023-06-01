@@ -67,16 +67,16 @@ def call(Map params){
             stage('Escaneo de la aplicación') {
                 steps {
                     script{
-                        sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
-                        sh 'docker exec owasp mkdir /zap/wrk'
-                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8045/ -r report.html -I'
+                        /*sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
+                        sh 'docker exec owasp mkdir /zap/wrk'*/
+                        sh 'docker exec owasp zap-full-scan.py -t http://marioo:5000 -r report.html -I'
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
                         sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'  
                     }
                 }
             }
         }
-        
+
         post {
             success {
                 echo "Build Success - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
