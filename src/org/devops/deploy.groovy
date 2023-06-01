@@ -1,5 +1,5 @@
 package org.devops
 
-def deploy(Map params){
-    sh 'docker run -d --name retofase2 -p 3000:80 retof2' 
+def deployimage(PROJECT){
+    sh "docker run --name ${PROJECT}-p 80${env.BUILD_ID}:3000 -d ${PROJECT}"
 }

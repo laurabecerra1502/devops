@@ -23,9 +23,9 @@ def call(Map params){
                     script {
                         def giturl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
                         def gitname = giturl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
-                        env.PROJECT = gitname
+                        PROJECT = gitname
                         def second = new org.devops.analisis()
-                        second.scanner("${env.PROJECT}")
+                        second.scanner("${PROJECT}")
                     }  
                 }        
             }
@@ -34,7 +34,7 @@ def call(Map params){
                 steps {
                     script {
                         def third = new org.devops.image()
-                        third.buildimage("${env.PROJECT}")
+                        third.buildimage("${PROJECT}")
                     }
                 }
             }
@@ -43,17 +43,18 @@ def call(Map params){
                 steps {
                     script {
                         def fifth = new org.devops.push()
-                        fifth.pushimage("${env.PROJECT}")
+                        fifth.pushimage("${PROJECT}")
                     }
                     
                 } 
             }
 
-            /*stage('Deploy Image') {
+            stage('Deploy Imagen') {
                 steps {
-                    sh "docker build -t reactapp ."
-                    sh 'docker run -p 8003:3000 -d reactapp'
-                    
+                    script {
+                        def sixth = new org.devops.deploy()
+                        sixth.deployimage("${PROJECT}")
+                    }                  
                 }
             }
 
@@ -76,17 +77,7 @@ def call(Map params){
                 }
             }
 
-            stage('Owasp-ZAP') {
-                steps {
-                    script {
-                        sh "curl -Ls https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz -o ${env.WORKSPACE}/owasp.zip"
-                        sh "tar -xf ${env.WORKSPACE}/owasp.zip"
-                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://localhost:5002 -quickprogress -quickout ${env.WORKSPACE}/report.html"
-                    }
-                }
-            }*/
-
-
+            
         }
 
         post {
