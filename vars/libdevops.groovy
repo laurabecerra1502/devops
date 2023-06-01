@@ -47,7 +47,7 @@ def call(Map params){
                     }
                     
                 } 
-            }*/
+            }
 
             stage('Deploy Imagen') {
                 steps {
@@ -62,7 +62,16 @@ def call(Map params){
                         }
                     }    
                 }                                        
-            }
+            }*/
+
+            stage('Deploy Imagen') {
+                steps {
+                    script{
+                        sh "docker build -t aplicacion_reactapp ."
+                        sh "docker run --name app -p 8040:3000 -d aplicacion_reactapp"
+                    }    
+                }                                        
+            }*/
 
             /*stage('Owasp-ZAP') {
             steps {
