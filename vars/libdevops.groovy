@@ -71,7 +71,7 @@ def call(Map params){
                         sh 'docker exec owasp mkdir /zap/wrk'*/
                         sh 'docker exec owasp zap-full-scan.py -t http://marioo:5000 -r report.html -I'
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
-                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'  
+                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/mario/'  
                     }
                 }
             }
