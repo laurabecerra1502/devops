@@ -62,7 +62,7 @@ def call(Map params){
                         }
                     }    
                 }                                        
-            }*/
+            }
 
             stage('Escaneo de la aplicación') {
                 steps {
@@ -80,7 +80,17 @@ def call(Map params){
                             sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/mario/'
                     }
                 }
-            }          
+            }*/ 
+
+            stage('Owasp-ZAP') {
+            steps {
+                script {
+                        sh "curl -Ls https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz -o ${env.WORKSPACE}/owasp.zip"
+                        sh "tar -xf ${env.WORKSPACE}/owasp.zip"
+                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl https://marioo:5000 -quickprogress -quickout ${env.WORKSPACE}/report.html"
+                }
+            }
+        }           
         }
 
         post {
