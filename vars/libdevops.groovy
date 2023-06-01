@@ -75,7 +75,7 @@ def call(Map params){
                             sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
                     }
                 }
-            }
+            }*/
 
             
         }
