@@ -67,7 +67,7 @@ def call(Map params){
             stage('Escaneo de la aplicación') {
                 steps {
                     script {
-                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8045 -r report.html -I'
+                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8045/ -r report.html -I'
                     }
                 }
             }
