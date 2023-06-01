@@ -7,6 +7,8 @@ def call(Map params){
             nodejs 'NodeJS'
         }
 
+        int borrado = 0
+
         stages {
             /*stage('Construccion Aplicación') {
                 steps {
@@ -86,11 +88,17 @@ def call(Map params){
             }
             failure {
                 echo "Build Failed - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+                borrado = 1
             }
             aborted {
                 echo "Build Aborted - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
             }
         }
+
+        if borrado == 1{
+            sh "docker remove laurabecerra/${PROJECT}:${env.BUILD_ID}"
+        }
+
         
     }       
 }
