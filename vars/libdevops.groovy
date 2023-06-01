@@ -71,26 +71,26 @@ def call(Map params){
                         sh "docker run --name app -p 8040:3000 -d aplicacion_reactapp"
                     }    
                 }                                        
-            }
+            }*/
 
-            /*stage('Owasp-ZAP') {
-            steps {
-                script {
+            stage('Owasp-ZAP') {
+                steps {
+                    script {
                         sh "curl -Ls https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz -o ${env.WORKSPACE}/owasp.zip"
                         sh "tar -xf ${env.WORKSPACE}/owasp.zip"
-                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://aplicacion_reactapp:8045 -quickprogress -quickout ${env.WORKSPACE}/report.html"
+                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://app:8040 -quickprogress -quickout ${env.WORKSPACE}/report.html"
+                    }
                 }
             }
-         }*/
         
-            stage('Escaneo de la aplicación') {
+            /*stage('Escaneo de la aplicación') {
                 steps {
                     script{
-                        /*sh 'docker network create testapp'
-                        sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'*/
+                        sh 'docker network create testapp'
+                        sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
                         sh 'docker exec owasp mkdir /zap/wrk'
-                        /*sh 'docker network connect testapp 47bf1789dd52'
-                        sh 'docker network connect testapp 2a4896e12971'*/
+                        sh 'docker network connect testapp 47bf1789dd52'
+                        sh 'docker network connect testapp 2a4896e12971'
                         sh 'docker exec owasp zap-full-scan.py -t http://marioo:5000/ -r report.html -I'
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
                         sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/mario/'
@@ -98,7 +98,7 @@ def call(Map params){
                         
                     }
                 }
-            }
+            }*/
         }
 
         post {
