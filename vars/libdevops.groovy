@@ -72,6 +72,7 @@ def call(Map params){
                         sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://aplicacion_reactapp:8045 -quickprogress -quickout ${env.WORKSPACE}/report.html"
                 }
             }
+         }
         
             /*stage('Escaneo de la aplicación') {
                 steps {
