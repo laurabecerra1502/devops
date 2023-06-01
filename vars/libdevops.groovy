@@ -62,7 +62,7 @@ def call(Map params){
                         }
                     }    
                 }                                        
-            }*/
+            }
 
             stage('Deploy Imagen') {
                 steps {
@@ -86,14 +86,14 @@ def call(Map params){
             stage('Escaneo de la aplicación') {
                 steps {
                     script{
-                        sh 'docker network create testapp'
+                        /*sh 'docker network create testapp'
                         sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
                         sh 'docker exec owasp mkdir /zap/wrk'
-                        /*sh 'docker network connect testapp 47bf1789dd52'
-                        sh 'docker network connect testapp 2a4896e12971'
-                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8045/ -r report.html -I'
+                        sh 'docker network connect testapp 47bf1789dd52'
+                        sh 'docker network connect testapp 2a4896e12971'*/
+                        sh 'docker exec owasp zap-full-scan.py -t http://app:8040/ -r report.html -I'
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
-                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'*/
+                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'
 
                         
                     }
