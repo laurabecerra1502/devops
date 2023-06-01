@@ -16,7 +16,7 @@ def call(Map params){
                     }
                 }
                 
-            }
+            }*/
         
             stage('Escaneo SonarQube') {
                 steps {
@@ -28,7 +28,7 @@ def call(Map params){
                         second.scanner("${PROJECT}")
                     }  
                 }        
-            }*/
+            }
 
             stage('Build Imagen') {
                 steps {
