@@ -62,7 +62,7 @@ def call(Map params){
                         }
                     }    
                 }                                        
-            }*/
+            }
 
             stage('Owasp-ZAP') {
             steps {
@@ -71,21 +71,20 @@ def call(Map params){
                         sh "tar -xf ${env.WORKSPACE}/owasp.zip"
                         sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://aplicacion_reactapp:8045 -quickprogress -quickout ${env.WORKSPACE}/report.html"
                 }
-            }
-        }
-
-            /*stage('Escaneo de la aplicación') {
+            }*/
+        
+            stage('Escaneo de la aplicación') {
                 steps {
                     script{
                         /*sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
-                        sh 'docker exec owasp mkdir /zap/wrk'
-                        sh 'docker exec owasp zap-full-scan.py -t http://marioo:5000 -r report.html -I'
+                        sh 'docker exec owasp mkdir /zap/wrk'*/
+                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8045 -r report.html -I'
           
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
-                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/mario/'  
+                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'  
                     }
                 }
-            }*/
+            }
         }
 
         post {
