@@ -78,7 +78,7 @@ def call(Map params){
                     script {
                         sh "curl -Ls https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz -o ${env.WORKSPACE}/owasp.zip"
                         sh "tar -xf ${env.WORKSPACE}/owasp.zip"
-                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://app:8040 -quickprogress -quickout ${env.WORKSPACE}/report.html"
+                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl http://localhost:8040 -quickprogress -quickout ${env.WORKSPACE}/report.html"
                     }
                 }
             }
