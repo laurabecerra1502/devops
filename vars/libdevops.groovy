@@ -6,11 +6,7 @@ def call(Map params){
         tools {
             nodejs 'NodeJS'
         }
-
-        enviroment {
-            int borrado = 0
-        }
-         
+        
         stages {
             /*stage('Construccion Aplicación') {
                 steps {
