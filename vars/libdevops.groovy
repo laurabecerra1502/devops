@@ -86,9 +86,7 @@ def call(Map params){
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
                         sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'  
 
-                        docker network create my-network'
-                sh 'docker run --name container1 --network my-network -d my-image1'
-                sh 'docker run --name container2 --network my-network -d my-image2
+                        
                     }
                 }
             }
