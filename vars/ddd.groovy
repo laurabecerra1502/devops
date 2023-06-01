@@ -1,5 +1,4 @@
-def call(Map params){
-
+def call(Map params) {
     pipeline {
         agent any
 
@@ -7,10 +6,8 @@ def call(Map params){
             nodejs 'NodeJS'
         }
 
-        enviroment {
-            int borrado = 0
-        }
-         
+        int borrado = 0
+
         stages {
             /*stage('Construccion Aplicación') {
                 steps {
@@ -26,7 +23,7 @@ def call(Map params){
                 steps {
                     script {
                         def giturl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
-                        def gitname = giturl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+                        def gitname = giturl.replaceAll('.+/(.+)\\.git', '$1').toLowerCase()
                         PROJECT = gitname
                         def second = new org.devops.analisis()
                         second.scanner("${PROJECT}")
@@ -62,46 +59,29 @@ def call(Map params){
                 }
             }
 
-            /*stage('Escaneo de la aplicación') {
+            stage('Escaneo de la aplicación') {
                 steps {
                     script {
                         echo "escaneo de la aplicacion"
-                            sh 'docker exec owasp zap-full-scan.py -t http://localhost:5002 -r report.html -I'
-                    }
-                }
-            }
-
-            stage('Copia en el wrk de jenkins') {
-                steps {
-                    script {
-                        echo "escaneo"
-                            sh 'docker cp owasp:/zap/wrk/report.html report.html'
-                            sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
-                    }
-                }
-            }*/
-
-            
+                            sh 'docker
+                            
         }
+    }
 
-        post {
-            success {
-                echo "Build Success - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
-            }
-            failure {
-                echo "Build Failed - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
-                borrado = 1
-            }
-            aborted {
-                echo "Build Aborted - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
-            }
+    post {
+        success {
+            echo "Build Success - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
         }
-
-        if borrado == 1 {
-            sh "docker rm ${PROJECT}"
+        failure {
+            echo "Build Failed - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+            borrado = 1
         }
+        aborted {
+            echo "Build Aborted - ${env.JOB_BASE_NAME} - ${env.BUILD_ID} on ${env.BUILD_URL}"
+        }
+    }
 
-        
-    }       
+    if borrado == 1{
+        sh "docker remove laurabecerra/${PROJECT}:${env.BUILD_ID}"
+    }
 }
-
