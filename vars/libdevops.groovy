@@ -7,7 +7,7 @@ def call(Map params){
             nodejs 'NodeJS'
         }
 
-        stages {
+        /*stages {
             stage('Construccion Aplicación') {
                 steps {
                     script {
@@ -28,7 +28,7 @@ def call(Map params){
                         second.scanner("${PROJECT}")
                     }  
                 }        
-            }
+            }*/
 
             stage('Build Imagen') {
                 steps {
