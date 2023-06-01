@@ -77,7 +77,7 @@ def call(Map params){
                     script {
                         echo "escaneo"
                             sh 'docker cp owasp:/zap/wrk/report.html report.html'
-                            sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/Owasp/'
+                            sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/mario/'
                     }
                 }
             }          
