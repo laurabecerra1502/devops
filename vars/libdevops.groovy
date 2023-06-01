@@ -77,12 +77,12 @@ def call(Map params){
             stage('Escaneo de la aplicación') {
                 steps {
                     script{
-                        sh 'docker network create app'
+                        /*sh 'docker network create app'
                         sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
                         sh 'docker exec owasp mkdir /zap/wrk'
                         sh 'docker network connect app owasp'
-                        sh 'docker network connect app aplicacion_reactapp'
-                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8045 -r report.html -I'
+                        sh 'docker network connect app aplicacion_reactapp'*/
+                        sh 'docker exec owasp zap-full-scan.py -t http://localhost:8045 -r report.html -I'
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
                         sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'  
 
