@@ -51,11 +51,17 @@ def call(Map params){
 
             stage('Deploy Imagen') {
                 steps {
-                    script {
-                        def sixth = new org.devops.deploy()
-                        sixth.deployimage("${PROJECT}")
-                    }                  
-                }
+                    script{
+                        DOCKER_EXIST = sh(returnStdout: true, script: 'echo "$(docker ps -q --filter name=${PROJECT})"').trim()
+                        
+                        if (DOCKER_EXIST != '') {  
+                            sh "docker start ${PROJECT}"
+                        } else {
+                            def deployimage = new org.devops.deploy()
+                            deployimage("${PROJECT}")
+                        }
+                    }    
+                }                                        
             }
 
             /*stage('Escaneo de la aplicación') {
