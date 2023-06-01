@@ -71,7 +71,7 @@ def call(Map params){
                         sh "docker run --name app -p 8040:3000 -d aplicacion_reactapp"
                     }    
                 }                                        
-            }*/
+            }
 
             /*stage('Owasp-ZAP') {
             steps {
