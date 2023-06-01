@@ -62,12 +62,12 @@ def call(Map params){
                         }
                     }    
                 }                                        
-            }
+            }*/
 
             stage('Escaneo de la aplicación') {
                 steps {
                     script {
-                        sh 'docker exec owasp zap-full-scan.py -t http://marioo:5000 -r report.html -I'
+                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8045 -r report.html -I'
                     }
                 }
             }
@@ -77,20 +77,10 @@ def call(Map params){
                     script {
                         echo "escaneo"
                             sh 'docker cp owasp:/zap/wrk/report.html report.html'
-                            sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/mario/'
+                            sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'
                     }
                 }
-            }*/ 
-
-            stage('Owasp-ZAP') {
-            steps {
-                script {
-                        sh "curl -Ls https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz -o ${env.WORKSPACE}/owasp.zip"
-                        sh "tar -xf ${env.WORKSPACE}/owasp.zip"
-                        sh "java -jar ${env.WORKSPACE}/ZAP_2.11.1/zap-2.11.1.jar -cmd -quickurl https://marioo:5000 -quickprogress -quickout ${env.WORKSPACE}/report.html"
-                }
-            }
-        }           
+            }                     
         }
 
         post {
