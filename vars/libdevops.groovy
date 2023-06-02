@@ -12,7 +12,7 @@ def call(Map params){
                 steps {
                     script {
                         def cloneapp = new org.devops.build()
-                        cloneapp.clone(paramscmUrl:scmUrl)
+                        cloneapp.clone(scmUrl:params.scmUrl)
                     }
                 }
                 
