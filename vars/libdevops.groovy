@@ -8,7 +8,7 @@ def call(Map params){
         }
         
         stages {
-            /*stage('Construccion Aplicación') {
+            stage('Construccion Aplicación') {
                 steps {
                     script {
                         def first = new org.devops.build()
