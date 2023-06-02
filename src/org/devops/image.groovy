@@ -1,6 +1,6 @@
 package org.devops
 
-def buildimage(PROJECT){
+def call(PROJECT){
     sh "docker build -t laurabecerra/${PROJECT}:${env.BUILD_ID} ."  
 }
 

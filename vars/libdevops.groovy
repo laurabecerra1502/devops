@@ -8,7 +8,7 @@ def call(Map params){
         }
         
         environment {
-            git_name = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+            PROJECT = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
         }
 
         stages {
@@ -22,7 +22,7 @@ def call(Map params){
                 
             }
 
-           /*stage('Construccion App') {
+           stage('Construccion App') {
                 steps {
                     script {
                         def buildapp = new org.devops.build()
@@ -35,8 +35,8 @@ def call(Map params){
             stage('Escaneo SonarQube') {
                 steps {
                     script {
-                        def scanner = new org.devops.analisis()
-                        scanner("${PROJECT}")
+                        def scannerapp = new org.devops.analisis()
+                        scannerapp("${PROJECT}")
                     }  
                 }        
             }
@@ -44,8 +44,8 @@ def call(Map params){
             stage('Build Imagen') {
                 steps {
                     script {
-                        def third = new org.devops.image()
-                        third.buildimage("${PROJECT}")
+                        def buildimage = new org.devops.image()
+                        buildimage("${PROJECT}")
                     }
                 }
             }
@@ -53,8 +53,8 @@ def call(Map params){
             stage('Push Imagen') {
                 steps {
                     script {
-                        def fifth = new org.devops.push()
-                        fifth.pushimage("${PROJECT}")
+                        def pushimage = new org.devops.push()
+                        pushimage("${PROJECT}")
                     }
                     
                 } 
@@ -75,28 +75,18 @@ def call(Map params){
                 }                                        
             }
 
-            stage('Deploy Imagen') {
-                steps {
-                    script{
-                        sh "docker build -t aplicacion_reactapp ."
-                        sh "docker run --name app -p 8040:3000 -d aplicacion_reactapp"
-                    }    
-                }                                        
-            }
-       
+            
             stage('Escaneo de la aplicación') {
                 steps {
                     script{
                         /*sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
-                        sh 'docker exec owasp mkdir /zap/wrk'
-                        sh 'docker exec owasp zap-full-scan.py -t http://www.example.com -r report.html -I'
+                        sh 'docker exec owasp mkdir /zap/wrk'*/
+                        sh 'docker exec owasp zap-full-scan.py -t http://aplicacion_reactapp:8011 -r report.html -I'
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
-                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'
-
-                        
+                        sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'   
                     }
                 }
-            }*/
+            }
         }
 
         post {
