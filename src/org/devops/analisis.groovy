@@ -1,6 +1,6 @@
 package org.devops
 
-def scanner(PROJECT){
+def call(PROJECT){
     def scannerHome = tool 'sonarqube' 
     withSonarQubeEnv('sonarqube'){ 
     sh "${scannerHome}/bin/sonar-scanner \
