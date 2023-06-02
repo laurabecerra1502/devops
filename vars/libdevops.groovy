@@ -7,7 +7,7 @@ def call(Map params){
             nodejs 'NodeJS'
         }
         
-        enviroment {
+        environment {
             branch_name = "${env.GIT_BRANCH}".split('/')[1]
             git_name = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
         }
