@@ -81,7 +81,8 @@ def call(Map params){
                     script{
                         /*sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
                         sh 'docker exec owasp mkdir /zap/wrk'*/
-                        sh 'docker exec owasp zap-full-scan.py -t http://appcita:8067 -r report.html -I'
+                        sh 'docker run --name owasp --user root --network=test -v owasp_data:/zap/wrk/:rw -t 
+                        owasp/zap2docker-stable zap-full-scan.py -t http://reactapp:3000 -r report.html'
                         sh 'docker cp owasp:/zap/wrk/report.html report.html'
                         sh 'docker cp report.html jenkins:/var/jenkins_home/workspace/devops_reto/'   
                     }
