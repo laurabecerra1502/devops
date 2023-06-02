@@ -1,7 +1,7 @@
 package org.devops
 
 def clone(Map params){
-    sh "git url: ${params.scmUrl}"   
+    sh "git branch: 'feature', url: ${params.scmUrl}"   
 }
 
 def install(){
