@@ -7,12 +7,17 @@ def call(Map params){
             nodejs 'NodeJS'
         }
         
+        enviroment {
+            branch_name = "${env.GIT_BRANCH}".split('/')[1]
+            git_name = "${env.GIT_URL}".replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
+        }
+
         stages {
             stage('Clone App') {
                 steps {
                     script {
                         def cloneapp = new org.devops.build()
-                        cloneapp.clone(scmUrl:params.scmUrl)
+                        cloneapp.clone("${branch_name}", scmUrl:params.scmUrl)
                     }
                 }
                 
@@ -31,9 +36,6 @@ def call(Map params){
             stage('Escaneo SonarQube') {
                 steps {
                     script {
-                        def giturl = "https://github.com/laurabecerra1502/aplicacion_reactapp.git"
-                        def gitname = giturl.replaceAll('.+/(.+)\\.git', '$1')toLowerCase()
-                        PROJECT = gitname
                         def scanner = new org.devops.analisis()
                         scanner("${PROJECT}")
                     }  
