@@ -16,7 +16,7 @@ def call(Map params){
                 steps {
                     script {
                         def cloneapp = new org.devops.build()
-                        cloneapp.clone("${branch_name}", scmUrl:params.scmUrl)
+                        cloneapp.clone(scmUrl:params.scmUrl)
                     }
                 }
                 
