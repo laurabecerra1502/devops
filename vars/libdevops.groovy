@@ -12,7 +12,7 @@ def call(Map params){
         }
 
         stages {
-            stage('Clone App') {
+            /*stage('Clone App') {
                 steps {
                     script {
                         def cloneapp = new org.devops.build()
@@ -39,7 +39,7 @@ def call(Map params){
                         scannerapp("${PROJECT}")
                     }  
                 }        
-            }
+            }*/
 
             stage('Build Imagen') {
                 steps {
@@ -50,7 +50,7 @@ def call(Map params){
                 }
             }
     
-            stage('Push Imagen') {
+            /*stage('Push Imagen') {
                 steps {
                     script {
                         def pushimage = new org.devops.push()
@@ -58,7 +58,7 @@ def call(Map params){
                     }
                     
                 } 
-            }
+            }*/
 
             stage('Deploy Imagen') {
                 steps {
