@@ -12,7 +12,7 @@ def call(Map params){
         }
 
         stages {
-            /*stage('Clone App') {
+            stage('Clone App') {
                 steps {
                     script {
                         def cloneapp = new org.devops.build()
@@ -58,17 +58,15 @@ def call(Map params){
                     }
                     
                 } 
-            }*/
+            }
 
             stage('Deploy Imagen') {
                 steps {
                     script{
                         DOCKER_EXIST = sh(returnStdout: true, script: 'echo "$(docker ps -q --filter name=${PROJECT})"').trim()
                         
-                        echo "El contenedor es ${DOCKER_EXIST}"
                         if (DOCKER_EXIST != '') {  
-                            echo "El contenedor es ${DOCKER_EXIST}"
-                            /*sh "docker start ${PROJECT}"*/
+                            sh "docker start ${PROJECT}"
                         } else {
                             def deployimage = new org.devops.deploy()
                             deployimage("${PROJECT}")
@@ -77,22 +75,14 @@ def call(Map params){
                 }                                        
             }
 
-            
-            /*stage('Escaneo de la aplicación') {
+            stage('Escaneo de la aplicación') {
                 steps {
                     script{
-                        /*sh 'docker run -dt --name owasp -v owasp_data:/zap/reports --user root -t owasp/zap2docker-stable /bin/bash'
-                        sh 'docker run -dt --name owasp --user root --network=test -v owasp_data:/zap/reports -t owasp/zap2docker-stable /bin/bash'
-                        sh 'docker exec owasp zap-full-scan.py -t http://reactapp:3000 -r report.html -I'
-                        sh 'docker exec owasp mkdir /zap/wrk'
-                        sh 'docker run -d --name owasp --user root --network=test -v owasp_data:/zap/reports -t owasp/zap2docker-stable /bin/bash' 
-                        sh 'docker exec owasp mkdir /zap/wrk'
-                        sh 'docker exec owasp zap-full-scan.py -t http://reactapp:3000/ -r reportapp.html -I'
-                        sh 'docker cp owasp:/zap/wrk/reportapp.html reportapp.html'
-                        sh 'docker cp reportapp.html jenkins:/var/jenkins_home/workspace/devops_reto/'   
+                         def owaspscan = new org.devops.owasp()
+                        owaspscan("${PROJECT}")
                     }
                 }
-            }*/
+            }
         }
 
         post {
