@@ -58,7 +58,7 @@ def call(Map params){
                     }
                     
                 } 
-            }*/
+            }
 
             stage('Deploy Imagen') {
                 steps {
@@ -82,7 +82,7 @@ def call(Map params){
                         owaspscan("${PROJECT}")
                     }
                 }
-            }
+            }*/
         }
 
         post {
